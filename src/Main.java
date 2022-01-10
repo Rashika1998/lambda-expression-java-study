@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -44,9 +45,48 @@ public class Main {
 
         //All match
         boolean ageBiggerThanFive = people.stream()
-                .allMatch(person -> person.getAge()>5);
+                .allMatch(person -> person.getAge()>20);
 
         System.out.println(ageBiggerThanFive);
+        System.out.println("\n");
+        System.out.println("\n");
+
+        //Non match
+        boolean noAgeBiggerThanFive = people.stream()
+                .noneMatch(person -> person.getAge() > 7);
+
+        System.out.println(noAgeBiggerThanFive);
+        System.out.println("\n");
+        System.out.println("\n");
+
+        //Max
+        Person maxAgePerson = people.stream()
+                .max(Comparator.comparing(person -> person.getAge())).get();
+
+        System.out.println(maxAgePerson);
+        System.out.println("\n");
+        System.out.println("\n");
+
+
+        //Min
+        Person minAgePerson = people.stream()
+                .min(Comparator.comparing(person -> person.getAge())).get();
+
+        System.out.println(minAgePerson);
+        System.out.println("\n");
+        System.out.println("\n");
+
+
+        // Group functionality
+        Map<Gender, List<Person>> groupPeople = people.stream()
+                .collect(Collectors.groupingBy(Person::getGender));
+
+        groupPeople.forEach(((gender, people1) -> {
+            System.out.println(gender);
+            people1.forEach(System.out::println);
+            System.out.println();
+        }));
+
 
     }
 
