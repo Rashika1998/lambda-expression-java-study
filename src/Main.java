@@ -42,6 +42,12 @@ public class Main {
         System.out.println("\n");
         System.out.println("\n");
 
+        //All match
+        boolean ageBiggerThanFive = people.stream()
+                .allMatch(person -> person.getAge()>5);
+
+        System.out.println(ageBiggerThanFive);
+
     }
 
     private static List<Person> getPeople(){
